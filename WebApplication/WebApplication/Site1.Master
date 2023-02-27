@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table>
+                <tr>
+                    <td><h3>User:Id:<asp:Label ID="lblUserId" runat="server" Text=""></asp:Label></h3></td>
+                    <td><h3>Full Name:<asp:Label ID="lblFullName" runat="server" Text=""></asp:Label></h3></td>
+                </tr>
+            </table>
+            <ol>
+                <li><a href="Dashboard.aspx"> 1.Dashboard</a></li>
+                <li><a href="Employee_Master.aspx"> 2.Employee Master</a></li>
+                <li><a href="Emp_Educational_Details.aspx"> 3.Educational Details</a></li>
+                <li><asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick ="btnLogout_Click" /></li>
+            </ol>
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

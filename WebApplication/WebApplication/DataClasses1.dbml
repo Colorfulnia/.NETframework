@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_Employee" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-V5T6TH4;Initial Catalog=DB_Employee;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_EmployeeConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_Employee_Master" Member="tbl_Employee_Masters">
+    <Type Name="tbl_Employee_Master">
+      <Column Name="Employee_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Employee_Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Contact_No" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Address_Line1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Address_Line2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Zip_Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Active_Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_Employee_Master_tbl_Educational_Detail" Member="tbl_Educational_Details" ThisKey="Employee_Id" OtherKey="Employee_Id" Type="tbl_Educational_Detail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Educational_Details" Member="tbl_Educational_Details">
+    <Type Name="tbl_Educational_Detail">
+      <Column Name="Educational_Details_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Employee_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Education" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="University" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Grade_Obtained" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Passing_Year" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Active_Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_Employee_Master_tbl_Educational_Detail" Member="tbl_Employee_Master" ThisKey="Employee_Id" OtherKey="Employee_Id" Type="tbl_Employee_Master" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Error_Log" Member="tbl_Error_Logs">
+    <Type Name="tbl_Error_Log">
+      <Column Name="Error_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Page_Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Method_Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Error_Message" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Stack_Trace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Created_Datetime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_User_Master" Member="tbl_User_Masters">
+    <Type Name="tbl_User_Master">
+      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Full_Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Last_Login_Datetime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Active_Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Proc_tbl_Employee_Master_Insert_Data" Method="Proc_tbl_Employee_Master_Insert_Data">
+    <Parameter Name="Employee_Name" Parameter="employee_Name" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Contact_No" Parameter="contact_No" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Address1" Parameter="address1" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Address2" Parameter="address2" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="City" Parameter="city" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="State" Parameter="state" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Country" Parameter="country" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Zipcode" Parameter="zipcode" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Proc_tbl_Employee_Master_Select_All" Method="Proc_tbl_Employee_Master_Select_All">
+    <ElementType Name="Proc_tbl_Employee_Master_Select_AllResult">
+      <Column Name="Employee_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Employee_Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Contact_No" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Address_Line1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Address_Line2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Zip_Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Active_Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Proc_tbl_Employee_Master_Select_By_Id" Method="Proc_tbl_Employee_Master_Select_By_Id">
+    <Parameter Name="Employee_Id" Parameter="employee_Id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Proc_tbl_Employee_Master_Select_By_IdResult">
+      <Column Name="Employee_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Employee_Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Contact_No" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Address_Line1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Address_Line2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Zip_Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Active_Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Proc_tbl_Employee_Master_Update_Data" Method="Proc_tbl_Employee_Master_Update_Data">
+    <Parameter Name="Employee_Id" Parameter="employee_Id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Employee_Name" Parameter="employee_Name" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Contact_No" Parameter="contact_No" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Address1" Parameter="address1" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Address2" Parameter="address2" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="City" Parameter="city" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="State" Parameter="state" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Country" Parameter="country" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Zipcode" Parameter="zipcode" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Proc_tbl_Employee_Master_Update_Status" Method="Proc_tbl_Employee_Master_Update_Status">
+    <Parameter Name="Employee_Id" Parameter="employee_Id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="status" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
