@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using WCF_CURD_Service.Model;
 
 namespace WCF_CURD_Service
 {
@@ -14,34 +15,20 @@ namespace WCF_CURD_Service
     {
 
         [OperationContract]
-        string GetData(int value);
+        string InsertEmployee(Employee_Master emp);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        string UpdateEmployee(Employee_Master emp);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        string DeleteEmployee(Employee_Master emp);
+
+        [OperationContract]
+        List<Employee_Master> GetEmployees();
+
+        [OperationContract]
+        Employee_Master GetEmployeeById(int employeeId);
+        
     }
 
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
-    }
 }
