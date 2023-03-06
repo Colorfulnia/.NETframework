@@ -15,18 +15,39 @@ namespace WCF_CURD_Service
     {
 
         [OperationContract]
+        [WebInvoke(Method ="POST",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
         string InsertEmployee(Employee_Master emp);
 
         [OperationContract]
+        [WebInvoke(Method = "POST",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+
         string UpdateEmployee(Employee_Master emp);
 
         [OperationContract]
-        string DeleteEmployee(Employee_Master emp);
+        [WebInvoke(Method = "POST",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        string DeleteEmployee(int employeeId);
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
         List<Employee_Master> GetEmployees();
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
         Employee_Master GetEmployeeById(int employeeId);
         
     }
